@@ -2,7 +2,7 @@ package ru.netology.data;
 
 import com.github.javafaker.Faker;
 import lombok.Value;
-import org.junit.jupiter.api.BeforeEach;
+
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,13 +11,6 @@ import java.util.Random;
 
 public class DataGenerator {
     private DataGenerator() {
-    }
-
-    private static Faker faker;
-
-    @BeforeEach
-    void setUpAll() {
-        faker = new Faker(new Locale("ru"));
     }
 
 
@@ -79,16 +72,5 @@ public class DataGenerator {
         String name;
         String phone;
 
-        public String getCity() {
-            return city;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getPhone() {
-            return phone;
-        }
     }
 }

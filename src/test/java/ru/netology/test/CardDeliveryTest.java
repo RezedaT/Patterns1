@@ -8,13 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.netology.data.DataGenerator;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 
-class DeliveryTest {
+class CardDeliveryTest {
 
     @BeforeEach
     void setup() {
@@ -67,7 +69,7 @@ class DeliveryTest {
     }
     @Test
     @DisplayName("Should successful plan and replan meeting")
-    void shouldSuccessfulPlanAndReplanMeetingWhenDayEarlier() {
+    void shouldSuccessfulPlanAndReplanMeetingWhenSecondMeetingDateEarlier() {
         var validUser = DataGenerator.Registration.generateUser("ru");
         var daysToAddForFirstMeeting = 7;
         var firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
@@ -224,7 +226,8 @@ class DeliveryTest {
                 .shouldBe(visible)
                 .shouldHave(exactText("Поле обязательно для заполнения"));
     }
-// тест не проходит. заявка при невалидном номере телефона не должна отправляться.
+
+    // Багрепорт. Заявка отправляется при невалидном номере телефона
 //    @Test
 //    @DisplayName("Should stop because of out of number")
 //    void shouldNotSendRequestWithInvalidPhone() {
@@ -239,7 +242,7 @@ class DeliveryTest {
 //        $("[data-test-id=agreement]").click();
 //        $("button.button").click();
 //        $("[data-test-id='phone'] .input__inner .input__sub")
-//                .shouldBe(visible)
+//                .shouldBe(visible, Duration.ofSeconds(15))
 //                .shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
 //    }
 
