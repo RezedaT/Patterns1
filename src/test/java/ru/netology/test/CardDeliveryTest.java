@@ -250,7 +250,6 @@ class CardDeliveryTest {
     @DisplayName("Should stop because of empty form")
     void shouldNotSendEmptyRequestWithCheckBox() {
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        $("[data-test-id=agreement]").click();
         $("button.button").click();
         $("[data-test-id='city'] .input__inner  .input__sub")
                 .shouldBe(visible)
